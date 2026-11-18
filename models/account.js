@@ -7,6 +7,6 @@ const accountSchema = new Schema({
     password: String
 });
 
-accountSchema.plugin(passportLocalMongoose);
+accountSchema.plugin(passportLocalMongoose.default || passportLocalMongoose);
 
 module.exports = mongoose.model("Account", accountSchema);
