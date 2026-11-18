@@ -22,3 +22,5 @@ router.get('/aircraft/:id', aircraft_controller.aircraft_detail);
 router.get('/aircraft', aircraft_controller.aircraft_list);
 
 module.exports = router;
+router.get('/aircraft/:id', aircraft_controller.aircraft_detail);
+router.delete('/aircraft/:id', aircraft_controller.aircraft_delete);

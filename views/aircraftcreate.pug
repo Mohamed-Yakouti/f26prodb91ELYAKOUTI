@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  h1= title
+  form(id='AircraftForm', action="/resource/aircraft", method="POST")
+      div.form-group
+          label.aircraftAttr(for='aircraft_type') Aircraft type
+          input#aircraft_type(type='text', name='aircraft_type')
+      div.form-group
+          label.aircraftAttr(for='capacity') Capacity
+          input#capacity(type='number', name='capacity')
+      div.form-group
+          label.aircraftAttr(for='cruising_speed') Cruising speed
+          input#cruising_speed(type='number', name='cruising_speed')
+      input(type="submit")
+
+  script.
+    document.forms['AircraftForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      fetch(event.target.action, {
+        method: 'POST',
+        body: new URLSearchParams(new FormData(event.target))
+      }).then((resp) => {
+        return resp.json();
+      }).then((body) => {
+        alert("Save succeeded")
+      }).catch((error) => {
+        alert("Save failed " + error )
+      });
+    });
